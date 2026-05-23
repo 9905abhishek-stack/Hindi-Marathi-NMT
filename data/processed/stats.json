@@ -1,0 +1,23 @@
+{
+  "train": {
+    "num_pairs": 228600,
+    "hi_avg_len": 24.037502187226597,
+    "hi_max_len": 198,
+    "mr_avg_len": 19.438180227471566,
+    "mr_max_len": 192
+  },
+  "val": {
+    "num_pairs": 12031,
+    "hi_avg_len": 24.206632865098495,
+    "hi_max_len": 186,
+    "mr_avg_len": 19.532624054525808,
+    "mr_max_len": 176
+  },
+  "test": {
+    "num_pairs": 10390,
+    "hi_avg_len": 21.985081809432145,
+    "hi_max_len": 185,
+    "mr_avg_len": 17.876130895091435,
+    "mr_max_len": 99
+  }
+}

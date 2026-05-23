@@ -1,0 +1,7 @@
+{
+  "experiment": "fusion_hi2mr",
+  "direction": "hi2mr",
+  "greedy_bleu": 27.542622093380395,
+  "greedy_chrf": 56.35711101437304,
+  "best_epoch": 9
+}

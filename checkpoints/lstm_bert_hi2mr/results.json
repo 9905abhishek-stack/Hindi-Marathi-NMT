@@ -1,0 +1,11 @@
+{
+  "experiment": "lstm_bert_hi2mr",
+  "direction": "hi2mr",
+  "greedy_bleu": 12.460334915143665,
+  "greedy_chrf": 37.36561517014438,
+  "beam_bleu": 30.43463458844235,
+  "beam_chrf": 59.94452701530305,
+  "beam_width": 5,
+  "best_epoch": 18,
+  "val_bleu": 31.178490805248515
+}

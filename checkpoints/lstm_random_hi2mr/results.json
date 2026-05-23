@@ -1,0 +1,11 @@
+{
+  "experiment": "lstm_random_hi2mr",
+  "direction": "hi2mr",
+  "greedy_bleu": 12.466830291655102,
+  "greedy_chrf": 36.527673941123545,
+  "beam_bleu": 30.62665399351876,
+  "beam_chrf": 60.10502612206494,
+  "beam_width": 5,
+  "best_epoch": 30,
+  "val_bleu": 30.299470749995727
+}

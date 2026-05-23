@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Models and Archives
+*.pt
+*.zip
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+private_materials/

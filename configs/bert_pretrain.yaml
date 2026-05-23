@@ -1,0 +1,24 @@
+experiment_name: bert_pretrain
+objective: Masked Language Modeling (MLM)
+architecture:
+  model_type: custom_bert
+  embed_dim: 768
+  num_layers: 12
+  num_heads: 12
+  num_kv_heads: 4
+  mlp_ratio: 4
+  dropout: 0.1
+  positional_embeddings: RoPE
+  attention: GQA
+  normalization: RMSNorm
+  activation: SwiGLU
+  params_target: ~110M
+training:
+  batch_size: 32
+  epochs: 10
+  learning_rate: 0.0001
+  masking_prob: 0.15
+data:
+  tokenizer: sentencepiece_bpe_32k
+  corpus: joint_hindi_marathi (all_text_for_tokenizer.txt)
+  max_len: 128

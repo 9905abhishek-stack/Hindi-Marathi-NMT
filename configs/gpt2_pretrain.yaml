@@ -1,0 +1,23 @@
+experiment_name: gpt2_pretrain
+objective: Causal Language Modeling (CLM)
+architecture:
+  model_type: custom_gpt2
+  embed_dim: 768
+  num_layers: 12
+  num_heads: 12
+  num_kv_heads: 4
+  mlp_ratio: 4
+  dropout: 0.1
+  positional_embeddings: RoPE
+  attention: GQA (Causal)
+  normalization: RMSNorm
+  activation: SwiGLU
+  params_target: ~124M
+training:
+  batch_size: 32
+  epochs: 10
+  learning_rate: 0.0001
+data:
+  tokenizer: sentencepiece_bpe_32k
+  corpus: marathi_only (train.mr + val.mr)
+  max_len: 128

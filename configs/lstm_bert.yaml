@@ -1,0 +1,23 @@
+experiment_name: lstm_bert_hi2mr
+direction: hi2mr
+architecture:
+  model_type: lstm_seq2seq
+  embed_dim: 768
+  hidden_dim: 512
+  num_layers: 2
+  dropout: 0.3
+  attention_dim: 256
+  embedding_init: l3cube-pune-bert (hindi-bert-v2 for encoder, marathi-bert-v2 for decoder)
+training:
+  batch_size: 64
+  epochs: 30
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  grad_clip: 1.0
+  label_smoothing: 0.1
+  tf_start: 1.0
+  tf_end: 0.5
+  eval_every: 3
+data:
+  tokenizer: sentencepiece_bpe_32k
+  max_len: 80
