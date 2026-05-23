@@ -12,3 +12,8 @@ __pycache__/
 Thumbs.db
 
 private_materials/
+
+# Large Data Files
+data/**/*.hi
+data/**/*.mr
+data/**/*.txt
