@@ -11,7 +11,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-private_materials/
+.tmp/
 
 # Large Data Files
 data/**/*.hi
