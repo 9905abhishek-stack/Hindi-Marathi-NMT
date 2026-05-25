@@ -5,7 +5,7 @@ from pathlib import Path
 def create_kaggle_archive():
     print("Preparing Kaggle Upload Archive...")
     
-    output_filename = "adivaani_kaggle.zip"
+    output_filename = "hindi_marathi_nmt_kaggle.zip"
     
     # Directories and files to include
     targets = [

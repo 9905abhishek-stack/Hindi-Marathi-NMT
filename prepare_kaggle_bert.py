@@ -8,7 +8,7 @@ def create_bert_lstm_archive():
     """
     print("Preparing BERT LSTM Kaggle Archive...")
     
-    output_filename = "adivaani_bert_lstm.zip"
+    output_filename = "hindi_marathi_nmt_bert_lstm.zip"
     
     targets = [
         "src/",

@@ -1,6 +1,6 @@
-# AdiVaani: Hindi-Marathi Neural Machine Translation
+# Hindi-Marathi Neural Machine Translation
 
-This repository contains the complete implementation for the AdiVaani Initiative hiring assessment (MISN Lab, IIT Delhi). The goal is to build low-resource NLP systems for Hindi-Marathi translation.
+This repository contains the complete implementation for the MISN Lab, IIT Delhi hiring assessment. The goal is to build low-resource NLP systems for Hindi-Marathi translation.
 
 ## Project Structure
 

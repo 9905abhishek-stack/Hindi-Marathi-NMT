@@ -1,1 +1,1 @@
-# AdiVaani: Hindi-Marathi Neural Machine Translation
+# Hindi-Marathi Neural Machine Translation
