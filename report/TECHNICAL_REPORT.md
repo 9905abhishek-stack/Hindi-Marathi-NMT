@@ -1,4 +1,4 @@
-# AdiVaani: Technical Report
+# Hindi-Marathi NMT: Technical Report
 **MISN Lab, IIT Delhi — Hiring Assessment**  
 **Author:** Abhishek  
 **Date:** May 2025
@@ -7,7 +7,7 @@
 
 ## 1. Project Overview & Objectives
 
-This report presents a complete Neural Machine Translation (NMT) pipeline for **Hindi → Marathi** translation, built as part of the AdiVaani Initiative assessment. The project spans two complementary paradigms:
+This report presents a complete Neural Machine Translation (NMT) pipeline for **Hindi → Marathi** translation, built as part of the MISN Lab hiring assessment. The project spans two complementary paradigms:
 
 - **Part I:** Classical LSTM Seq2Seq with Bahdanau attention, comparing randomly initialized embeddings against pretrained L3Cube BERT embeddings.
 - **Part II:** Modern Transformer-based approach using self-pretrained BERT (encoder) and GPT-2 (decoder) models fused via cross-attention for translation.
@@ -85,6 +85,16 @@ Pure teacher forcing (always feeding ground truth) creates a train-test mismatch
 | BLEU-100 | 12.47 | **30.63** |
 | CHRF++-100 | — | **60.11** |
 
+#### Training Plots
+| Train/Val Loss | BLEU-100 |
+|:---:|:---:|
+| ![](../checkpoints/lstm_random_hi2mr/plots/lstm_random_hi2mr_loss.png) | ![](../checkpoints/lstm_random_hi2mr/plots/lstm_random_hi2mr_bleu.png) |
+
+<p align="center">
+  <b>CHRF++-100</b><br>
+  <img src="../checkpoints/lstm_random_hi2mr/plots/lstm_random_hi2mr_chrf.png" width="50%">
+</p>
+
 #### Convergence Analysis
 The model showed rapid loss reduction in epochs 1-10, with validation loss stabilizing around epoch 15. The gap between greedy (12.47) and beam search (30.63) BLEU is striking — a 2.5× improvement — highlighting how sensitive translation quality is to the decoding strategy. Greedy decoding makes locally optimal but globally suboptimal choices; beam search explores multiple hypotheses and avoids "getting stuck" on poor initial token choices.
 
@@ -111,6 +121,16 @@ This approach preserves our existing data pipeline (same tokenizer, same dataloa
 | BLEU-100 | 12.46 | **30.43** |
 | CHRF++-100 | — | **59.94** |
 
+#### Training Plots
+| Train/Val Loss | BLEU-100 |
+|:---:|:---:|
+| ![](../checkpoints/lstm_bert_hi2mr/plots/lstm_bert_hi2mr_loss.png) | ![](../checkpoints/lstm_bert_hi2mr/plots/lstm_bert_hi2mr_bleu.png) |
+
+<p align="center">
+  <b>CHRF++-100</b><br>
+  <img src="../checkpoints/lstm_bert_hi2mr/plots/lstm_bert_hi2mr_chrf.png" width="50%">
+</p>
+
 ### 3.5 Comparative Analysis: Random vs BERT Embeddings
 
 | Metric | Random Init | BERT Init | Δ |
@@ -130,6 +150,19 @@ However, examining the training curves reveals an important difference: the BERT
 
 **Low-Frequency Word Handling:**  
 BERT embeddings are expected to provide better representations for rare words (since BERT saw billions of tokens during pretraining). However, our BPE tokenizer already mitigates the rare word problem by decomposing rare words into frequent subwords. This double mitigation may explain why BERT embeddings showed no measurable advantage for rare word translation quality.
+
+### 3.6 Qualitative Analysis & Example Translations
+Below are examples translated by the LSTM (BERT embeddings) utilizing Beam Search (k=5). 
+
+**Example 1 (Strong Semantic Preservation):**  
+**Ref:** राजस्थानातील पहिली स्त्री वैमानिक नम्रता भट्ट आहे.  
+**Hyp:** राजस्थानची पहिली महिला पायलट नम्रता भट्ट आहे.  
+*Observation:* The model successfully translated the semantics accurately, correctly swapping "स्त्री वैमानिक" (female aviator) with the perfectly valid loanword equivalent "महिला पायलट" (female pilot).
+
+**Example 2 (Syntactic Reordering):**  
+**Ref:** डोळ्यांना काजळ न लावणे.  
+**Hyp:** डोळ्यांत पाणी लावू नये.  
+*Observation:* A failure case. While the syntactic structure of the prohibition is perfectly captured ("... लावू नये"), the model hallucinates the object, translating "काजळ" (kajal/kohl) to "पाणी" (water). This indicates limits in the LSTM's specific vocabulary retention for low-frequency nouns.
 
 ---
 
@@ -236,6 +269,6 @@ Fine-tuning for 9 epochs yielded:
 | Local GPU | NVIDIA RTX 4050 (6GB VRAM) — prototyping, debugging, evaluation |
 | Training GPU | Kaggle T4 x2 (2×16GB) — all training runs |
 | Precision | Mixed precision (FP16) via PyTorch AMP |
-| AI Assistance | Agentic AI coding assistant used for code scaffolding, CUDA debugging, and documentation |
+| AI Assistance | Agentic AI coding assistant (Antigravity, utilizing Gemini 3.1 Pro) used for code scaffolding, CUDA debugging, and documentation |
 
-**Note on AI Usage:** All architectural decisions (GQA, SwiGLU, Fusion design, BPE vocabulary size, scheduled sampling) were explicitly reasoned about, justified, and approved prior to implementation. The AI assistant was used as a productivity tool, not as an architectural oracle.
+**Note on AI Usage:** All core architectural decisions (e.g., implementing GQA to solve beam search OOM, deciding on joint BPE tokenization, designing the BERT+GPT-2 Fusion mechanism, and applying Scheduled Sampling) were explicitly reasoned, critically analyzed, and guided by me rather than blindly generated. The AI assistant was used as a productivity tool, not as an architectural oracle.
